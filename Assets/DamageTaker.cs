@@ -9,6 +9,13 @@ public class DamageTaker : MonoBehaviour
 
     public void TakeDamage(float _damage, Vector3 _hitPopUpPos, ProjectileController _projecController)
     {
+        if (GetComponent<PlayerHealth>())
+        {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            playerHealth.SetHealth(_damage);
+            return;
+        }
+
         if (_projecController)
         {
             if (b_isWeakPoint && _projecController.GetComponent<ProjectileCollisionScript>().GetCanHitWeakPoint())
