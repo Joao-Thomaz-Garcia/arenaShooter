@@ -33,7 +33,8 @@ public class DamageTaker : MonoBehaviour
         HitPopUpScript _hitDamageGO = Instantiate(hitDamagePopUp, _hitPopUpPos, Quaternion.identity).GetComponent<HitPopUpScript>();
         _hitDamageGO.SetDamageText(_damage);
 
-        GetComponent<EnemyClass>().SetHealth(-_damage);
+        GetComponent<EnemyClass>().TakeDamage(_damage);
+
     }
 
     public void AddWeaknessHit()

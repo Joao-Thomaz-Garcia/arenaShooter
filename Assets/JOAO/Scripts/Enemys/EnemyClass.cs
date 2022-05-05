@@ -31,6 +31,16 @@ public class EnemyClass : MonoBehaviour
         this.playerObject = playerObject;
     }
 
+    public void TakeDamage(float damage)
+    {
+        float newHealth = (health - damage);
+        health = newHealth;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     //Gets
     public float GetHealth()
     {

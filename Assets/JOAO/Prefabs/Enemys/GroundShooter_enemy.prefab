@@ -233,15 +233,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec94465dfa03afb4eaeacef428ec6fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHealth: 100
-  EnemySpeed: 5
-  EnemyDamage: 2
+  startHealth: 1000
+  enemyHealth: 100
+  enemySpeed: 5
+  enemyDamage: 2
   shotDelay: 2
   shotDistance: 10
   shotProjectile: {fileID: 1658112780640456, guid: 37439a46bcadee64b92bf6b1106e19d8,
     type: 3}
   shotAim: {fileID: 7065128642449239384}
-  playerObject: {fileID: 0}
 --- !u!114 &7065128642942957321
 MonoBehaviour:
   m_ObjectHideFlags: 0

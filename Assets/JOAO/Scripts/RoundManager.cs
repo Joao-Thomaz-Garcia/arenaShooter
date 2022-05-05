@@ -29,6 +29,7 @@ public class RoundManager : MonoBehaviour
             var playerObject = enemyManager.GetPlayerObject();
 
             GameObject go = Instantiate(groundEnemy, SpawnPoint, Quaternion.identity);
+            go.name = i.ToString();
             go.GetComponent<EnemyClass>().SetPlayerObject(playerObject);
             spawnedEnemys.Add(go);
 

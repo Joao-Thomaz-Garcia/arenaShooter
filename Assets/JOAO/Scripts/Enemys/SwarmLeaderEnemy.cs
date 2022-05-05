@@ -42,9 +42,6 @@ public class SwarmLeaderEnemy : EnemyClass
 
     bool HasSpawned = false;
 
-    float timer;
-    float timerUpdate = 40f;
-
     NavMeshAgent agent;
 
     EnemyStatesType state;
