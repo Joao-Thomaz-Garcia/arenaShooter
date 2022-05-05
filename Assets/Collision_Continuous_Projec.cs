@@ -33,6 +33,7 @@ public class Collision_Continuous_Projec : ProjectileCollisionScript
         GameObject _hitGO = Instantiate(hitVFX_prefab, other.transform.position, Quaternion.identity);
 
         var hitPsParts = _hitGO.transform.GetChild(0).GetComponent<ParticleSystem>();
+        _hitGO.GetComponent<CorruptedSphereHitVFXScript>().SetParticlePosition(transform.position);
         Destroy(_hitGO, hitPsParts.main.duration);
 
 
@@ -51,6 +52,6 @@ public class Collision_Continuous_Projec : ProjectileCollisionScript
 
 
     #region Gets and Sets
-
+    
     #endregion
 }

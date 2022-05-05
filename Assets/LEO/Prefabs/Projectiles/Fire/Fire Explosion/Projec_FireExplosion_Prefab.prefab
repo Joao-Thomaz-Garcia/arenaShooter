@@ -4859,8 +4859,8 @@ GameObject:
   - component: {fileID: 199673866899362744}
   - component: {fileID: 54065236817763250}
   - component: {fileID: 135625251307712288}
-  - component: {fileID: -2649137750343826505}
   - component: {fileID: 108421645325912486}
+  - component: {fileID: -2649137750343826505}
   - component: {fileID: 497840790739067082}
   - component: {fileID: -186356384617932666}
   - component: {fileID: -1164480701375795750}
@@ -9767,20 +9767,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2649137750343826505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990380580032880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8280ab80730d95049a60303bccf2b7f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileType: 2
-  lifeTime: 5
 --- !u!108 &108421645325912486
 Light:
   m_ObjectHideFlags: 0
@@ -9843,6 +9829,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-2649137750343826505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990380580032880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8280ab80730d95049a60303bccf2b7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileType: 2
+  lifeTime: 5
 --- !u!114 &497840790739067082
 MonoBehaviour:
   m_ObjectHideFlags: 0

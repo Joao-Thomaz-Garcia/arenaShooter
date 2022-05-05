@@ -30,7 +30,9 @@ public class Explosion_Standard : ExplosionScript
             if (explosionColls[i].GetComponent<DamageTaker>())
             {
                 DamageTaker _damageTaker = explosionColls[i].GetComponent<DamageTaker>();
-                _damageTaker.TakeDamage(explosionDamage, explosionColls[i].transform.position, null);
+
+                float _finalDamage = explosionDamage + Globals.Instance.projectileModifiers.GetFireModifiers().GetExplosionDamage();
+                _damageTaker.TakeDamage(_finalDamage, explosionColls[i].transform.position, null);
             }
         }
 

@@ -14,7 +14,7 @@ public class ProjectileController : MonoBehaviour
     AmmoController ammoController;
     Transform player;
 
-
+    #region AWAKE, START, UPDATES
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,13 +25,13 @@ public class ProjectileController : MonoBehaviour
     private void Start()
     {
         rb.freezeRotation = true;
-    }
 
-    public void Shoot()
-    {
-        StartMoveProjectile();
-    }
+        ParticleSystem.MainModule mainModule = GetComponent<ParticleSystem>().main;
+        mainModule.duration = lifeTime;
+        mainModule.startLifetime = lifeTime;
 
+        ProjecPopulateConfiguration();
+    }
     private void FixedUpdate()
     {
         time += Time.deltaTime;
@@ -41,6 +41,49 @@ public class ProjectileController : MonoBehaviour
             DeactivateProjectile();
         }
     }
+    #endregion
+
+    // SERVE PARA MODIFICAR CERTOS COMPONENTES BASEADO NAS NECESSIDADES DE CADA PROJETIL
+    void ProjecPopulateConfiguration()
+    {
+        switch (projectileType)
+        {
+            case ProjectileType.FireStandard:
+                break;
+            case ProjectileType.FireExplosion:
+                break;
+            case ProjectileType.FireRock:
+                break;
+            case ProjectileType.CorruptionStandard:
+                break;
+            case ProjectileType.CorruptionArrow:
+                break;
+            case ProjectileType.CorruptionSphere:
+                Vector3 _adicionalScale = new Vector3(Globals.Instance.projectileModifiers.GetCorruptionModifiers().GetSphereRadious() + 1, Globals.Instance.projectileModifiers.GetCorruptionModifiers().GetSphereRadious() + 1, Globals.Instance.projectileModifiers.GetCorruptionModifiers().GetSphereRadious() + 1); // ESSES +1 SÃO O 1 DA ESCALA INICIAL, PARA QUE ELA NÃO SEJA PERDIDA.
+                transform.localScale = _adicionalScale;
+                break;
+            case ProjectileType.GalaxyStandard:
+                break;
+            case ProjectileType.GalaxyGuiada:
+                break;
+            case ProjectileType.GalaxyArrow:
+                break;
+            case ProjectileType.CarmesimStandard:
+                break;
+            case ProjectileType.CarmesimArrow:
+                break;
+            case ProjectileType.CarmesimExplosion:
+                break;
+        }
+    }
+
+
+    public void Shoot()
+    {
+        StartMoveProjectile();
+    }
+
+
 
 
     public float GetTime()
@@ -51,6 +94,7 @@ public class ProjectileController : MonoBehaviour
 
     public void ActivateProjectile()
     {
+        ProjecPopulateConfiguration();
         StartMoveProjectile();
     }
     public void DeactivateProjectile()

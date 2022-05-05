@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageTaker : MonoBehaviour
 {
+    [SerializeField] bool b_canBeChasedByJumperProjec;
     [SerializeField] bool b_isWeakPoint;
     [SerializeField] GameObject hitDamagePopUp;
 
@@ -42,5 +43,9 @@ public class DamageTaker : MonoBehaviour
     public bool GetIsWeakPoint()
     {
         return b_isWeakPoint;
+    }
+    public bool GetCanNotBeChasedByJumperProjec()
+    {
+        return b_canBeChasedByJumperProjec;
     }
 }

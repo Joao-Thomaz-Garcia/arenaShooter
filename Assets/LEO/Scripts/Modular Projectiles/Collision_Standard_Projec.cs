@@ -45,9 +45,21 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
 
             float _damage = projectileController.GetProjecDamager().GetFinalDamage();
             damageTaker.TakeDamage(_damage, pos, projectileController);
-        }
 
-        projectileController.DeactivateProjectile();
+
+            if (GetComponent<Mover_Jumper_Projec>())
+            {
+                StartCoroutine(GetComponent<Mover_Jumper_Projec>().FindNewTarget());
+            }
+            else
+            {
+                projectileController.DeactivateProjectile();
+            }
+        }
+        else 
+        { 
+            projectileController.DeactivateProjectile(); 
+        }
     }
     #endregion
 
