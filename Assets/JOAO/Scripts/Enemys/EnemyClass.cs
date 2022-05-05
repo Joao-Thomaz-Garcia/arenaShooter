@@ -8,10 +8,15 @@ public class EnemyClass : MonoBehaviour
     private float speed;
     private float damage;
 
+    private GameObject playerObject;
+
+
     //Sets
     public void SetHealth(float health)
     {
         this.health = health;
+        if (health <= 0)
+            Destroy(gameObject);
     }
     public void SetSpeed(float speed)
     {
@@ -20,6 +25,10 @@ public class EnemyClass : MonoBehaviour
     public void SetDamage(float damage)
     {
         this.damage = damage;
+    }
+    public void SetPlayerObject(GameObject playerObject)
+    {
+        this.playerObject = playerObject;
     }
 
     //Gets
@@ -34,6 +43,10 @@ public class EnemyClass : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+    public GameObject GetPlayerObject()
+    {
+        return playerObject;
     }
 
 }

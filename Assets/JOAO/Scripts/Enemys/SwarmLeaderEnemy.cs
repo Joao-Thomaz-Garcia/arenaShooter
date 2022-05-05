@@ -6,10 +6,39 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class SwarmLeaderEnemy : EnemyClass
 {
+    //Enemy Status
+    [SerializeField]
+    float enemyHealth = 100f;
+    [SerializeField]
+    float enemySpeed = 5f;
+    [SerializeField]
+    float enemyDamage = 2f;
+
+    //Shoot Properties
+    float shotTimer;
+    [SerializeField]
+    float shotDelay = 1f;
+    [SerializeField]
+    float shotDistance = 20f;
+
+    //Vassal Status
     [SerializeField]
     float vassalSpeed = 5f;
     [SerializeField]
     float vassalHealth = 15f;
+
+    //Vassal Shoot Properties
+    [SerializeField]
+    float vassalShotDelay = 2f;
+    [SerializeField]
+    float vassalShotDistance = 10f;
+
+    [SerializeField]
+    GameObject shotProjectile;
+
+    //REMOVER APÓS CORREÇÕES DO PREFAB -> NÃO DEIXAR ELE DESTRUIR O PRÓPRIO ATIRADOR.
+    [SerializeField]
+    GameObject shotAim;
 
     bool HasSpawned = false;
 
@@ -20,53 +49,43 @@ public class SwarmLeaderEnemy : EnemyClass
 
     EnemyStatesType state;
 
-    [SerializeField] LayerMask layerMask;
-
     [SerializeField]
     GameObject vassalGameObject;
     [SerializeField]
     GameObject[] vassalList = new GameObject[4];
 
+    [SerializeField]
     GameObject playerObject;
-
-    private void Awake()
+    private void Start()
     {
+        //Temporario.
+        SetPlayerObject(playerObject);
+
         agent = GetComponent<NavMeshAgent>();
-        state = EnemyStatesType.Innactive;
+        state = EnemyStatesType.Chase;
 
-        SetHealth(25);
-        SetSpeed(5);
-        SetDamage(3);
+        SetHealth(enemyHealth);
+        SetSpeed(enemySpeed);
+        SetDamage(enemyDamage);
 
-    }
+        agent.speed = GetSpeed();
 
-    private void Update()
-    {
-        CheckHealth();
-        while (state == EnemyStatesType.Innactive)
+        if (!HasSpawned)
         {
-            Collider[] collider = Physics.OverlapSphere(transform.position, 15f, layerMask);
-            if (collider.Length != 0)
-            {
-                playerObject = collider[0].gameObject;
-
-                agent.SetDestination(playerObject.transform.position);
-
-                state = EnemyStatesType.Chase;
-            }
-
-            break;
-        }
-
-        if((state != EnemyStatesType.Innactive) && !HasSpawned)
-        {
-            agent.speed = GetSpeed();
-
             SpawnSwarm();
             HasSpawned = true;
         }
 
+
+        if (GetPlayerObject() != null)
+            Chase();
+        else
+        {
+            Debug.Log("ERROR NONE PLAYER OBJECT SET UPON THIS ENEMY");
+            SetHealth(0);
+        }
     }
+
 
     private void FixedUpdate()
     {
@@ -91,13 +110,13 @@ public class SwarmLeaderEnemy : EnemyClass
 
     private void CheckStates()
     {
-        while (Vector3.Distance(transform.position, playerObject.transform.position) >= 12f)
+        while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) >= 12f)
         {
             state = EnemyStatesType.Chase;
 
             break;
         }
-        while (Vector3.Distance(transform.position, playerObject.transform.position) < 12f)
+        while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) < 12f)
         {
 
             state = EnemyStatesType.Attack;
@@ -108,37 +127,24 @@ public class SwarmLeaderEnemy : EnemyClass
 
     private void Chase()
     {
-        if (Vector3.Distance(transform.position, playerObject.transform.position) > 40f)
-        {
-            //Se estiver afastado do jogador, ficar parado na mesma posição
-            agent.SetDestination(transform.position);
-
-            //Caso o jogador saia de perto do inimigo por muito tempo, destruir o objeto.
-            timer += Time.fixedDeltaTime;
-            if (timer >= timerUpdate)
-            {
-                //Destruir objeto.
-
-                timer = 0;
-            }
-        }
-        else
-        {
-            if (timer != 0)
-                timer = 0;
-
-            agent.SetDestination(playerObject.transform.position);
-        }
+        agent.SetDestination(GetPlayerObject().transform.position);
 
     }
 
     private void Attack()
     {
         agent.SetDestination(transform.position);
+        transform.LookAt(GetPlayerObject().transform.position);
 
-        transform.LookAt(playerObject.transform.position);
+        shotTimer += Time.fixedDeltaTime;
+        if (shotTimer >= shotDelay)
+        {
+            Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
+            Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
 
-        Debug.DrawLine(transform.position, playerObject.transform.position, Color.red);
+            shotTimer = 0;
+        }
+
     }
 
 
@@ -150,10 +156,14 @@ public class SwarmLeaderEnemy : EnemyClass
             SwarmVassalEnemy swarmVassal = go.GetComponent<SwarmVassalEnemy>();
 
             swarmVassal.SetSwarmLeader(this);
+
             swarmVassal.SetSpeed(vassalSpeed);
             swarmVassal.SetHealth(vassalHealth);
+            swarmVassal.SetVassalShotDelay(vassalShotDelay);
+            swarmVassal.SetVassalShotDistance(vassalShotDistance);
 
-            swarmVassal.SetPlayerObject(playerObject);
+            swarmVassal.SetShotProjectile(shotProjectile);
+
             go.GetComponent<DamageTaker>().SetHitPopUp(GetComponent<DamageTaker>().GetHitPopUp());
 
             if (i == 0)
@@ -184,13 +194,8 @@ public class SwarmLeaderEnemy : EnemyClass
             vassalList[i] = go;
         }
     }
-
-
-    private void CheckHealth()
+    public float GetShotDistance()
     {
-        if (GetHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
+        return shotDistance;
     }
 }

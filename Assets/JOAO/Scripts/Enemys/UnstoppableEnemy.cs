@@ -6,59 +6,51 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class UnstoppableEnemy : EnemyClass
 {
+    //Enemy Status
+    [SerializeField]
+    float enemyHealth = 100f;
+    [SerializeField]
+    float enemySpeed = 30f;
+    [SerializeField]
+    float enemyDamage = 2f;
+
+    //Dash Properties
+    float chargingTimer;
+    [SerializeField]
+    float chargingTimerUpdate = 1.5f;
+    [SerializeField]
+    int dashAmount = 2;
+    int dashesDone = 0;
+
     Vector3 waypoint = Vector3.zero;
-    bool playerIsVisible = false;
 
     [SerializeField] LayerMask layerMask;
     [SerializeField] LayerMask wallMask;
-
-
-    float chargingTimer;
-    float chargingTimerUpdate = 1.5f;
-
-    float timer;
-    float timerUpdate = 40f;
-
-    GameObject playerObject;
 
     NavMeshAgent agent;
 
     EnemyStatesType state;
 
-    private void Awake()
+    [SerializeField]
+    GameObject playerObject;
+    private void Start()
     {
+        //Temporario.
+        SetPlayerObject(playerObject);
+
         agent = GetComponent<NavMeshAgent>();
-        state = EnemyStatesType.Innactive;
+        state = EnemyStatesType.Chase;
 
-        SetHealth(1000f);
-        SetSpeed(30f);
-        SetDamage(5);
-
+        SetHealth(enemyHealth);
+        SetSpeed(enemySpeed);
+        SetDamage(enemyDamage);
 
         agent.speed = GetSpeed();
-    }
 
-
-    private void Update()
-    {
-        CheckHealth();
-        while (state == EnemyStatesType.Innactive)
+        if (!(GetPlayerObject() != null))
         {
-            Collider[] collider = Physics.OverlapSphere(transform.position, 15f, layerMask);
-            if (collider.Length != 0)
-            {
-                playerObject = collider[0].gameObject;
-
-                agent.speed = GetSpeed();
-                state = EnemyStatesType.Chase;
-            }
-
-            break;
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SetupDashPosition();
+            Debug.Log("ERROR NONE PLAYER OBJECT SET UPON THIS ENEMY");
+            SetHealth(0);
         }
 
     }
@@ -87,23 +79,27 @@ public class UnstoppableEnemy : EnemyClass
 
     void PrepareToDash()
     {
-        //Dar um dash na direção do jogador, mas só parar na parede
-        //
-
         chargingTimer += Time.fixedDeltaTime;
         if (chargingTimer >= chargingTimerUpdate)
         {
-            waypoint = SetupDashPosition();
-
-            chargingTimer = 0;
-            state = EnemyStatesType.Dashing;
+            if(dashesDone < dashAmount)
+            {
+                waypoint = SetupDashPosition();
+                state = EnemyStatesType.Dashing;
+                dashesDone++;
+            }
+            else
+            {
+                chargingTimer = 0;
+                dashesDone = 0;
+            }
         }
 
     }
 
     Vector3 SetupDashPosition()
     {
-        Vector3 playerPosition = new Vector3(playerObject.transform.position.x, transform.position.y ,playerObject.transform.position.z);
+        Vector3 playerPosition = new Vector3(GetPlayerObject().transform.position.x, transform.position.y , GetPlayerObject().transform.position.z);
 
         Vector3 lookAtThis = transform.position - playerPosition;
         lookAtThis.Normalize();
@@ -124,25 +120,15 @@ public class UnstoppableEnemy : EnemyClass
 
     void Dash()
     {
-        if(Vector3.Distance(transform.position, waypoint) <= 0.5f)
+        if(Vector3.Distance(transform.position, waypoint) <= 0.7f)
             state = EnemyStatesType.Chase;
 
         agent.SetDestination(waypoint);
 
     }
 
-    private void CheckHealth()
-    {
-        if (GetHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-
     private void OnDrawGizmos()
     {
-
         //Gizmos da aréa de detecção do player.
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 15f);

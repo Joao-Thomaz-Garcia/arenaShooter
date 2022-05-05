@@ -6,33 +6,34 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class SwarmVassalEnemy : EnemyClass
 {
-    //SAME AS GROUND SHOOTER ENEMY//
-    float timer;
-    float timerUpdate = 40f;
+    //Shoot Properties
+    float shotTimer;
+    float shotDelay = 2f;
+    float shotDistance = 10f;
+
+    GameObject shotProjectile;
+
 
     EnemyStatesType state;
 
     NavMeshAgent agent;
 
-    //INDIVIDUAL PROPERTIES//
-    SwarmLeaderEnemy swarmLeader;
 
-    GameObject playerObject;
+    SwarmLeaderEnemy swarmLeader;
 
     Vector3 positionToHold;
 
 
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         state = EnemyStatesType.Chase;
-    }
 
-    private void Update()
-    {
-        CheckHealth();
+        var playerObject = swarmLeader.GetPlayerObject();
+        SetPlayerObject(playerObject);
 
     }
+
 
     private void FixedUpdate()
     {
@@ -64,18 +65,11 @@ public class SwarmVassalEnemy : EnemyClass
         this.positionToHold = positionToHold;
 
     }
-    public void SetPlayerObject(GameObject playerObject)
-    {
-        this.playerObject = playerObject;
-    }
-
 
     public Vector3 GetPositionToHold()
     {
         return positionToHold;
     }
-
-
 
 
     private void CheckStates()
@@ -89,7 +83,7 @@ public class SwarmVassalEnemy : EnemyClass
                 state = EnemyStatesType.Chase;
 
             }
-            else if (Vector3.Distance(transform.position, playerObject.transform.position) < 10f && Vector3.Distance(transform.position, vassalPositionToHold) < 1.5f)
+            else if (Vector3.Distance(transform.position, GetPlayerObject().transform.position) < swarmLeader.GetShotDistance() && Vector3.Distance(transform.position, vassalPositionToHold) < 1.5f)
             {
                 state = EnemyStatesType.Attack;
 
@@ -97,13 +91,13 @@ public class SwarmVassalEnemy : EnemyClass
         }
         else
         {
-            while (Vector3.Distance(transform.position, playerObject.transform.position) >= 10f)
+            while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) >= shotDistance)
             {
                 state = EnemyStatesType.Chase;
 
                 break;
             }
-            while (Vector3.Distance(transform.position, playerObject.transform.position) < 10f)
+            while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) < shotDistance)
             {
 
                 state = EnemyStatesType.Attack;
@@ -120,42 +114,36 @@ public class SwarmVassalEnemy : EnemyClass
 
         else
         {
-            if (Vector3.Distance(transform.position, playerObject.transform.position) > 40f)
-            {
-                //Se estiver afastado do jogador, ficar parado na mesma posição
-                agent.SetDestination(transform.position);
+            agent.SetDestination(transform.position);
 
-                //Caso o jogador saia de perto do inimigo por muito tempo, destruir o objeto.
-                timer += Time.fixedDeltaTime;
-                if (timer >= timerUpdate)
-                {
-                    //Destruir objeto.
-
-                    timer = 0;
-                }
-            }
-            else
-            {
-                if (timer != 0)
-                    timer = 0;
-
-                agent.SetDestination(playerObject.transform.position);
-            }
         }
     }
     private void Attack()
     {
         agent.SetDestination(transform.position);
+        transform.LookAt(GetPlayerObject().transform.position);
 
-        transform.LookAt(playerObject.transform.position);
-
-        Debug.DrawLine(transform.position, playerObject.transform.position);
-    }
-    private void CheckHealth()
-    {
-        if (GetHealth() <= 0)
+        shotTimer += Time.fixedDeltaTime;
+        if (shotTimer >= shotDelay)
         {
-            Destroy(gameObject);
+            Instantiate(shotProjectile, transform.position, transform.rotation);
+            Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
+
+            shotTimer = 0;
         }
+    }
+
+
+    public void SetShotProjectile(GameObject shotProjectile)
+    {
+        this.shotProjectile = shotProjectile;
+    }
+    public void SetVassalShotDelay(float shotDelay)
+    {
+        this.shotDelay = shotDelay;
+    }
+    public void SetVassalShotDistance(float shotDistance)
+    {
+        this.shotDistance = shotDistance;
     }
 }

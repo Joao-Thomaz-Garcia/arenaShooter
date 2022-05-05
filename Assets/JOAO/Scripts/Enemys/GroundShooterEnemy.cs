@@ -6,53 +6,53 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class GroundShooterEnemy : EnemyClass
 {
+    //Enemy Status
+    [SerializeField]
+    float enemyHealth = 100f;
+    [SerializeField]
+    float enemySpeed = 5f;
+    [SerializeField]
+    float enemyDamage = 2f;
 
-    float timer;
-    float timerUpdate = 40f;
+    //Shoot Properties
+    float shotTimer;
+    [SerializeField]
+    float shotDelay = 2f;
+    [SerializeField]
+    float shotDistance = 10f;
+
+    [SerializeField]
+    GameObject shotProjectile;
+
+    //REMOVER APÓS CORREÇÕES DO PREFAB -> NÃO DEIXAR ELE DESTRUIR O PRÓPRIO ATIRADOR.
+    [SerializeField]
+    GameObject shotAim;
 
     NavMeshAgent agent;
 
     EnemyStatesType state;
 
-    [SerializeField] LayerMask layerMask;
 
-    GameObject playerObject;
-
-
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        state = EnemyStatesType.Innactive;
+        state = EnemyStatesType.Chase;
 
-        SetHealth(5);
-        SetSpeed(5);
-        SetDamage(2);
+        SetHealth(enemyHealth);
+        SetSpeed(enemySpeed);
+        SetDamage(enemyDamage);
 
         agent.speed = GetSpeed();
 
-    }
 
-    private void Update()
-    {
-        CheckHealth();
-        while (state == EnemyStatesType.Innactive)
+        if(GetPlayerObject() != null)
+            Chase();
+        else
         {
-            Collider[] collider = Physics.OverlapSphere(transform.position, 15f, layerMask);
-            if (collider.Length != 0)
-            {
-                playerObject = collider[0].gameObject;
-
-                agent.SetDestination(playerObject.transform.position);
-
-                state = EnemyStatesType.Chase;
-            }
-
-            break;
+            Debug.Log("ERROR NONE PLAYER OBJECT SET UPON THIS ENEMY");
+            SetHealth(0);
         }
-
-
     }
-
     private void FixedUpdate()
     {
         while (!(state == EnemyStatesType.Innactive))
@@ -76,13 +76,13 @@ public class GroundShooterEnemy : EnemyClass
 
     private void CheckStates()
     {
-        while (Vector3.Distance(transform.position, playerObject.transform.position) >= 10f)
+        while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) >= shotDistance)
         {
             state = EnemyStatesType.Chase;
 
             break;
         }
-        while (Vector3.Distance(transform.position, playerObject.transform.position) < 10f)
+        while (Vector3.Distance(transform.position, GetPlayerObject().transform.position) < shotDistance)
         {
 
             state = EnemyStatesType.Attack;
@@ -93,45 +93,25 @@ public class GroundShooterEnemy : EnemyClass
 
     private void Chase()
     {
-        if (Vector3.Distance(transform.position, playerObject.transform.position) > 40f)
-        {
-            //Se estiver afastado do jogador, ficar parado na mesma posição
-            agent.SetDestination(transform.position);
+        agent.SetDestination(GetPlayerObject().transform.position);
 
-            //Caso o jogador saia de perto do inimigo por muito tempo, destruir o objeto.
-            timer += Time.fixedDeltaTime;
-            if (timer >= timerUpdate)
-            {
-                //Destruir objeto.
-
-                timer = 0;
-            }
-        }
-        else
-        {
-            if (timer != 0)
-                timer = 0;
-
-            agent.SetDestination(playerObject.transform.position);
-        }
 
     }
 
     private void Attack()
     {
         agent.SetDestination(transform.position);
+        transform.LookAt(GetPlayerObject().transform.position);
 
-        transform.LookAt(playerObject.transform.position);
-
-        Debug.DrawLine(transform.position, playerObject.transform.position);
-    }
-
-    private void CheckHealth()
-    {
-        if (GetHealth() <= 0)
+        shotTimer += Time.fixedDeltaTime;
+        if(shotTimer >= shotDelay)
         {
-            print(gameObject.name + " reached 0 HP");
-            Destroy(gameObject);
+            Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
+            Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
+
+            shotTimer = 0;
         }
+
+
     }
 }
