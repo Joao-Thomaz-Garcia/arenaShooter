@@ -22,15 +22,16 @@ public class ProjectileController : MonoBehaviour
         ammoController = GameObject.Find("Ammo").GetComponent<AmmoController>();
         player = GameObject.Find("Player").transform;
     }
-    private void Start()
+    private IEnumerator Start()
     {
         rb.freezeRotation = true;
+        ProjecPopulateConfiguration();
+
+        yield return new WaitForEndOfFrame(); // Para não dar erro do particle system não ter sido iniciado, e eu estar tentando modificar uma variavel.
 
         ParticleSystem.MainModule mainModule = GetComponent<ParticleSystem>().main;
         mainModule.duration = lifeTime;
         mainModule.startLifetime = lifeTime;
-
-        ProjecPopulateConfiguration();
     }
     private void FixedUpdate()
     {

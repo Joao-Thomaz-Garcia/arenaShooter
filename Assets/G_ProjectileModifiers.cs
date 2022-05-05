@@ -156,7 +156,7 @@ public class CarmesimProjectilesModifiers
     [SerializeField] float adicionalFireRate;
 
     [Header("Individual 1")]
-    [SerializeField] float adicionalWeakness; // Da um debuff para o inimigo, com ele recebendo mais dano de seus projeteis que não sejam esse.
+    [SerializeField] float adicionalWeakness;
     [Header("Individual 2")]
     [SerializeField] float adicionalOvertimeDamage;
 

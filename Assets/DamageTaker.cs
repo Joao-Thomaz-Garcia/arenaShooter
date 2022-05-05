@@ -8,6 +8,9 @@ public class DamageTaker : MonoBehaviour
     [SerializeField] bool b_isWeakPoint;
     [SerializeField] GameObject hitDamagePopUp;
 
+    [SerializeField] float maxStackableWeaknessHits;
+    int atualWeaknessHits = 0;
+
     public void TakeDamage(float _damage, Vector3 _hitPopUpPos, ProjectileController _projecController)
     {
         if (GetComponent<PlayerHealth>())
@@ -17,11 +20,12 @@ public class DamageTaker : MonoBehaviour
             return;
         }
 
+        /// SE UM DAMAGE TAKER FOR COLOCADO EM UM GAMEOJBECT FILHO DO ENEMY CLASS, ELE RECEBERA 2X O MESMO DANO. ENTÃO O CORRETO É SEPARAR ESSA FUNÇÃO ENTRE SE É OU NÃO UM WEAKPOINT, PQ SE FOR ELE NÃO ADICIONA NO _DAMAGE O DANO DO PROJETIL BASE, E SIM, APENAS O BONUS DE PONTO FRACO.
         if (_projecController)
         {
             if (b_isWeakPoint && _projecController.GetComponent<ProjectileCollisionScript>().GetCanHitWeakPoint())
             {
-                _damage += Globals.Instance.projectileModifiers.GetWeakPointDamageByProjecType(_projecController.GetProjectileType());
+                _damage += atualWeaknessHits * Globals.Instance.projectileModifiers.GetWeakPointDamageByProjecType(_projecController.GetProjectileType()); // PARA CADA PONTO STACKADO DE FRAQUEZA, MULTIPLICA O DANO RECEBIDO DO INIMIGO POR QUANTO DE FRAQUEZA ADICIONAL.
             }
         }
 
@@ -30,6 +34,14 @@ public class DamageTaker : MonoBehaviour
         _hitDamageGO.SetDamageText(_damage);
 
         GetComponent<EnemyClass>().SetHealth(-_damage);
+    }
+
+    public void AddWeaknessHit()
+    {
+        if (atualWeaknessHits < maxStackableWeaknessHits)
+        {
+            atualWeaknessHits++;
+        }
     }
 
     public void SetHitPopUp(GameObject hitPopUp)

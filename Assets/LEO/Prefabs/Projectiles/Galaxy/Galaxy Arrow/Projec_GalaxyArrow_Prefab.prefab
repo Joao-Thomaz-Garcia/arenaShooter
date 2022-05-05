@@ -5016,7 +5016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileType: 9
-  lifeTime: 20
+  lifeTime: 10
 --- !u!114 &-1642351256286690395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,9 +5029,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67670ee083cd9774882a2834eb3b9620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 30
   bulletDropSpeed: 0
-  jumpRadius: 10
+  jumpRadius: 50
 --- !u!114 &7220814392656773620
 MonoBehaviour:
   m_ObjectHideFlags: 0

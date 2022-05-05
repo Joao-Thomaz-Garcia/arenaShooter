@@ -30,7 +30,7 @@ public class UnstoppableEnemy : EnemyClass
         agent = GetComponent<NavMeshAgent>();
         state = EnemyStatesType.Innactive;
 
-        SetHealth(30);
+        SetHealth(1000f);
         SetSpeed(30f);
         SetDamage(5);
 

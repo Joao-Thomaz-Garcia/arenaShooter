@@ -43,10 +43,19 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
         {
             DamageTaker damageTaker = collision.transform.GetComponent<DamageTaker>();
 
+            #region Se for o Carmesim Arrow
+            if (projectileController.GetProjectileType() == ProjectileType.CarmesimArrow)
+            {
+                damageTaker.AddWeaknessHit();
+            }
+            #endregion
+
+
             float _damage = projectileController.GetProjecDamager().GetFinalDamage();
             damageTaker.TakeDamage(_damage, pos, projectileController);
 
 
+            #region Se for o Galaxy Arrow
             if (GetComponent<Mover_Jumper_Projec>())
             {
                 StartCoroutine(GetComponent<Mover_Jumper_Projec>().FindNewTarget());
@@ -55,8 +64,9 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
             {
                 projectileController.DeactivateProjectile();
             }
+            #endregion
         }
-        else 
+        else
         { 
             projectileController.DeactivateProjectile(); 
         }

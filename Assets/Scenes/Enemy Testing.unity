@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -725,7 +725,7 @@ MonoBehaviour:
   fireExplosionFireRate: 1
   fireRockFireRate: 1
   corruptionFireRate: 1
-  galaxyFireRate: 5
+  galaxyFireRate: 2
   carmesimFireRate: 1
 --- !u!114 &80226795
 MonoBehaviour:
@@ -3611,6 +3611,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 313471678524645651, guid: 75819f8eca2576c4a919803a7e10a01c,
+        type: 3}
+      propertyPath: carmesimModifiers.carmesimArrowFixedWeakPointDamage
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2163554502247773258, guid: 75819f8eca2576c4a919803a7e10a01c,
         type: 3}
       propertyPath: m_Name
