@@ -1038,6 +1038,7 @@ MonoBehaviour:
   b_canBeChasedByJumperProjec: 1
   b_isWeakPoint: 0
   hitDamagePopUp: {fileID: 0}
+  maxStackableWeaknessHits: 0
 --- !u!114 &80226801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,9 +2376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_canBeChasedByJumperProjec: 0
-  b_isWeakPoint: 0
+  b_isWeakPoint: 1
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}
+  maxStackableWeaknessHits: 5
 --- !u!114 &696263636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,9 +2813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_canBeChasedByJumperProjec: 0
-  b_isWeakPoint: 0
+  b_isWeakPoint: 1
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}
+  maxStackableWeaknessHits: 5
 --- !u!114 &1037317362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3172,9 +3175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_canBeChasedByJumperProjec: 0
-  b_isWeakPoint: 0
+  b_isWeakPoint: 1
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}
+  maxStackableWeaknessHits: 5
 --- !u!1 &1331255240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,6 +3343,7 @@ MonoBehaviour:
   b_isWeakPoint: 0
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}
+  maxStackableWeaknessHits: 0
 --- !u!1 &1354730547
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,7 +3619,7 @@ PrefabInstance:
     - target: {fileID: 313471678524645651, guid: 75819f8eca2576c4a919803a7e10a01c,
         type: 3}
       propertyPath: carmesimModifiers.carmesimArrowFixedWeakPointDamage
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2163554502247773258, guid: 75819f8eca2576c4a919803a7e10a01c,
         type: 3}
