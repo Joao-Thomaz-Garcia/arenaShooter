@@ -25,7 +25,7 @@ public class RoundManager : MonoBehaviour
             SpawnPoint.y = 0.75f;
 
             var enemyManager = GetComponent<EnemyManager>();
-            var groundEnemy = enemyManager.GroundShooterEnemy;
+            var groundEnemy = enemyManager.EnemysList[0];
             var playerObject = enemyManager.GetPlayerObject();
 
             GameObject go = Instantiate(groundEnemy, SpawnPoint, Quaternion.identity);

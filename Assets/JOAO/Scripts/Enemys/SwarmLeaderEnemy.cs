@@ -51,12 +51,8 @@ public class SwarmLeaderEnemy : EnemyClass
     [SerializeField]
     GameObject[] vassalList = new GameObject[4];
 
-    [SerializeField]
-    GameObject playerObject;
     private void Start()
     {
-        //Temporario.
-        SetPlayerObject(playerObject);
 
         agent = GetComponent<NavMeshAgent>();
         state = EnemyStatesType.Chase;
@@ -80,6 +76,8 @@ public class SwarmLeaderEnemy : EnemyClass
         {
             Debug.Log("ERROR NONE PLAYER OBJECT SET UPON THIS ENEMY");
             SetHealth(0);
+
+
         }
     }
 

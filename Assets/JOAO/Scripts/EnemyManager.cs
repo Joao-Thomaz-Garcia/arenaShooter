@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject GroundShooterEnemy;
+    public List<GameObject> EnemysList = new List<GameObject>();
 
     [SerializeField]
     GameObject playerObject;
