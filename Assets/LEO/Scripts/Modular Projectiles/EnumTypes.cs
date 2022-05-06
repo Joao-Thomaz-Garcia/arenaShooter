@@ -21,6 +21,8 @@ public enum ProjectileType
 public enum InteractableObjectsType { Nulo, UpgradeMachine }
 
 public enum EnemyStatesType { Innactive, Chase, Dashing, Attack }
+public enum EnemyTypes { Standard, GroundShooter, SwarmLeader, Unstoppable, Boss }
+
 
 public enum UpgradeTyoe 
 { 

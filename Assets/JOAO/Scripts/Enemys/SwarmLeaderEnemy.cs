@@ -134,8 +134,11 @@ public class SwarmLeaderEnemy : EnemyClass
         shotTimer += Time.fixedDeltaTime;
         if (shotTimer >= shotDelay)
         {
+
             Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
             Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
+
+            //Debug.Break();
 
             shotTimer = 0;
         }

@@ -4,48 +4,80 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //Criar um contador de spawns realizados?
-
-    int EnemyInList = 0;
-
-    [SerializeField]
-    int amountOfEnemys = 5;
-
-    [SerializeField]
-    float spawnTimerUpdate = 2f;
-    float timer;
-
     [SerializeField]
     float CircleRadius = 4.5f;
 
+
+    int RoundCounter = 0;
+    [SerializeField]
+    List<RoundSetup> Rounds = new List<RoundSetup>();
 
 
     List<GameObject> spawnedEnemys = new List<GameObject>();
     List<float> spawnedEnemysHealth = new List<float>();
 
+
+    private void Start()
+    {
+        SpawnNewRound(Rounds[RoundCounter]);
+
+
+    }
     private void FixedUpdate()
     {
-        SpawnTimer();
 
     }
 
+    void SpawnNewRound(RoundSetup Round)
+    {
+        var enemyManager = GetComponent<EnemyManager>();
+        for (int i = 0; i < Round.EnemyType.Count; i++)
+        {
+            for (int j = 0; j < Round.EnemyAmount[i]; j++)
+            {
+                var enemyInList = enemyManager.EnemysList[i];
 
+
+
+
+                Vector3 SpawnPoint = Random.insideUnitSphere * CircleRadius;
+                SpawnPoint += transform.position;
+
+                //Ajustar a altura de acordo com o tipo de inimigo.
+                SpawnPoint.y = 0.75f;
+
+
+                var playerObject = enemyManager.GetPlayerObject();
+
+
+                GameObject go = Instantiate(enemyInList, SpawnPoint, Quaternion.identity);
+                spawnedEnemys.Add(go);
+
+                var manageEnemyClass = go.GetComponent<EnemyClass>();
+                var enemyHealth = manageEnemyClass.GetHealth();
+
+                spawnedEnemysHealth.Add(enemyHealth);
+
+                manageEnemyClass.SetPlayerObject(playerObject);
+            }
+
+        }
+    }
+
+    /*
     private void SpawnTimer()
     {
-        timer += Time.fixedDeltaTime;
-        if (timer >= spawnTimerUpdate)
+        if(spawnedEnemys.Count == 0)
         {
             SpawnEnemys(amountOfEnemys);
-            timer = 0;
+
         }
-        else if(timer != 0 && spawnedEnemys.Count == 0)
-        {
-            SpawnEnemys(amountOfEnemys);
-            timer = 0;
-        }
-    }
+
+    }*/
     //Setar por Scriptable Object.
     //Decidir qual inimigo spawnar pelo Scriptable Object também.
+
+    /*
     private void SpawnEnemys(int amountToSpawn)
     {
         for(int i = 0; i <= amountToSpawn; i++)
@@ -77,7 +109,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
 
-    }
+    }*/
     
 
 

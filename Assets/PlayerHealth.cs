@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth;
-    float atualHealth;
+    [SerializeField] float atualHealth;
 
 
     private void Start()
@@ -15,10 +15,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void SetHealth(float health)
     {
-        atualHealth = health;
+        print("ENTROU NO SET HEALTH!");
+        atualHealth -= health;
 
-        if (health <= 0)
+        if (atualHealth <= 0)
         {
+            print("ENTROU NO IF!");
             Destroy(gameObject);
         }
     }
