@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac0c8bec29e2a244ab8db7788573fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_canBeChasedByJumperProjec: 1
+  b_canNotBeChasedByJumperProjec: 1
   b_isWeakPoint: 0
   hitDamagePopUp: {fileID: 0}
   maxStackableWeaknessHits: 0
@@ -5712,7 +5712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d3909481f01148b673fd994520f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 1000
   enemyHealth: 100
   enemySpeed: 30
   enemyDamage: 2
@@ -5724,7 +5723,6 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 128
-  playerObject: {fileID: 80226792}
 --- !u!114 &1316604561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5737,7 +5735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac0c8bec29e2a244ab8db7788573fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_canBeChasedByJumperProjec: 0
+  b_canNotBeChasedByJumperProjec: 1
   b_isWeakPoint: 0
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}
@@ -6275,6 +6273,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 313471678524645651, guid: 75819f8eca2576c4a919803a7e10a01c,
+        type: 3}
+      propertyPath: galaxyModifiers.adicionalJumps
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2163554502247773258, guid: 75819f8eca2576c4a919803a7e10a01c,
         type: 3}
       propertyPath: m_Name

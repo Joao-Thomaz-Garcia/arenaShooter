@@ -8,7 +8,12 @@ public class EnemyClass : MonoBehaviour
     private float speed;
     private float damage;
 
-    private GameObject playerObject;
+    protected GameObject playerObject;
+
+    private void Awake()
+    {
+        playerObject = GameObject.Find("Player");
+    }
 
 
     //Sets

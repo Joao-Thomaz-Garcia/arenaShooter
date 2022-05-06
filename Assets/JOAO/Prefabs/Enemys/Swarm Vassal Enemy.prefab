@@ -146,4 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac0c8bec29e2a244ab8db7788573fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPopUp: {fileID: 0}
+  b_canNotBeChasedByJumperProjec: 0
+  b_isWeakPoint: 0
+  hitDamagePopUp: {fileID: 0}
+  maxStackableWeaknessHits: 0

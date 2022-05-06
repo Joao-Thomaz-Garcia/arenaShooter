@@ -31,8 +31,6 @@ public class UnstoppableEnemy : EnemyClass
 
     EnemyStatesType state;
 
-    [SerializeField]
-    GameObject playerObject;
     private void Start()
     {
         //Temporario.

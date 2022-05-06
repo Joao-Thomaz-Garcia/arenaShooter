@@ -2392,12 +2392,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d3909481f01148b673fd994520f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 100
+  enemySpeed: 30
+  enemyDamage: 2
+  chargingTimerUpdate: 1.5
+  dashAmount: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   wallMask:
     serializedVersion: 2
     m_Bits: 128
+  playerObject: {fileID: 0}
 --- !u!195 &696263637
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2829,12 +2835,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d3909481f01148b673fd994520f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 100
+  enemySpeed: 30
+  enemyDamage: 2
+  chargingTimerUpdate: 1.5
+  dashAmount: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   wallMask:
     serializedVersion: 2
     m_Bits: 128
+  playerObject: {fileID: 0}
 --- !u!195 &1037317363
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3156,12 +3168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d3909481f01148b673fd994520f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 100
+  enemySpeed: 30
+  enemyDamage: 2
+  chargingTimerUpdate: 1.5
+  dashAmount: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   wallMask:
     serializedVersion: 2
     m_Bits: 128
+  playerObject: {fileID: 80226792}
 --- !u!114 &1316604561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3213,11 +3231,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9848422d375edcb4ab941061ba01065f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 100
+  enemySpeed: 5
+  enemyDamage: 2
+  shotDelay: 1
+  shotDistance: 20
   vassalSpeed: 5
   vassalHealth: 15
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  vassalShotDelay: 2
+  vassalShotDistance: 10
+  shotProjectile: {fileID: 0}
+  shotAim: {fileID: 0}
   vassalGameObject: {fileID: 5835480202448831245, guid: 6d386cbfb3d6c61409006f6fd4c42ef9,
     type: 3}
   vassalList:
@@ -3225,6 +3249,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerObject: {fileID: 0}
 --- !u!195 &1331255242
 NavMeshAgent:
   m_ObjectHideFlags: 0

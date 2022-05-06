@@ -7,6 +7,10 @@ public class Mover_Jumper_Projec : ProjectileMoverScript
     [SerializeField] float jumpRadius;
     DamageTaker target;
 
+    [SerializeField] int startJumps = 2;
+    int atualNumberOfJumps;
+
+
     #region AWAKE, START, UPDATES
     protected override void Awake()
     {
@@ -15,6 +19,7 @@ public class Mover_Jumper_Projec : ProjectileMoverScript
     protected override void Start()
     {
         base.Start();
+        //atualNumberOfJumps = (int) Globals.Instance.projectileModifiers.GetGalaxyModifiers().GetJumps() + startJumps;
     }
     void FixedUpdate()
     {
@@ -32,15 +37,35 @@ public class Mover_Jumper_Projec : ProjectileMoverScript
 
         for (int i = 0; i < _colls.Length; i++)
         {
-            if (_colls[i].GetComponent<DamageTaker>())
-            {
-                DamageTaker _damageTaker = _colls[i].GetComponent<DamageTaker>();
-                
-                float _damageTakerDistance = Vector3.Distance(transform.position, _damageTaker.transform.position);
-                if (_damageTakerDistance <= closestDistance && !_damageTaker.GetCanNotBeChasedByJumperProjec()) // SE O CANTNOBECHASED, FOR FALSO ELE SEGUE. OU SEJA SE ELE NÃO PODE SER SEGUIDO FOR FALSO, ELE PODE SEGUIR.
+            if (target) 
+            { 
+                if (_colls[i].gameObject != target.gameObject) 
                 {
-                    nearestDamageTaker = _damageTaker;
-                    closestDistance = _damageTakerDistance;
+                    if (_colls[i].GetComponent<DamageTaker>())
+                    {
+                        DamageTaker _damageTaker = _colls[i].GetComponent<DamageTaker>();
+
+                        float _damageTakerDistance = Vector3.Distance(transform.position, _damageTaker.transform.position);
+                        if (_damageTakerDistance <= closestDistance && !_damageTaker.GetCanNotBeChasedByJumperProjec()) // SE O CanNotBeChased, FOR FALSO ELE SEGUE. OU SEJA SE ELE NÃO PODE SER SEGUIDO FOR FALSO, ELE PODE SEGUIR.
+                        {
+                            nearestDamageTaker = _damageTaker;
+                            closestDistance = _damageTakerDistance;
+                        }
+                    }
+                } 
+            }
+            else
+            {
+                if (_colls[i].GetComponent<DamageTaker>())
+                {
+                    DamageTaker _damageTaker = _colls[i].GetComponent<DamageTaker>();
+
+                    float _damageTakerDistance = Vector3.Distance(transform.position, _damageTaker.transform.position);
+                    if (_damageTakerDistance <= closestDistance && !_damageTaker.GetCanNotBeChasedByJumperProjec()) // SE O CanNotBeChased, FOR FALSO ELE SEGUE. OU SEJA SE ELE NÃO PODE SER SEGUIDO FOR FALSO, ELE PODE SEGUIR.
+                    {
+                        nearestDamageTaker = _damageTaker;
+                        closestDistance = _damageTakerDistance;
+                    }
                 }
             }
         }
@@ -81,5 +106,15 @@ public class Mover_Jumper_Projec : ProjectileMoverScript
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, jumpRadius);
+    }
+
+
+    public void AddProjecJump()
+    {
+        atualNumberOfJumps++;
+        if (atualNumberOfJumps >= Globals.Instance.projectileModifiers.GetGalaxyModifiers().GetJumps() + startJumps)
+        {
+            projectileController.DeactivateProjectile();
+        }
     }
 }

@@ -106,7 +106,8 @@ public class GroundShooterEnemy : EnemyClass
         shotTimer += Time.fixedDeltaTime;
         if(shotTimer >= shotDelay)
         {
-            Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
+            /// COMENTEI MESMO! FODA-SE! SE FUDEU PARA DESCOBRIR O MOTIVO DO CARA NÃO ESTAR ATIRANDO...
+            //Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
             Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
 
             shotTimer = 0;

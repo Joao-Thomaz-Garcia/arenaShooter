@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7065128642449239399}
   - component: {fileID: 7065128642449239396}
   - component: {fileID: 7065128642449239397}
-  - component: {fileID: 7065128642449239398}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7065128642449239398
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7065128642449239384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7065128642942957322
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec94465dfa03afb4eaeacef428ec6fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 1000
   enemyHealth: 100
   enemySpeed: 5
   enemyDamage: 2
@@ -254,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac0c8bec29e2a244ab8db7788573fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_canBeChasedByJumperProjec: 0
+  b_canNotBeChasedByJumperProjec: 0
   b_isWeakPoint: 0
   hitDamagePopUp: {fileID: 5354547639415449308, guid: 5eee4e2384f1a174f95a73f5736c152f,
     type: 3}

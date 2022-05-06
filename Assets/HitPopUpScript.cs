@@ -24,9 +24,6 @@ public class HitPopUpScript : MonoBehaviour
     private void FixedUpdate()
     {
         transform.LookAt(player);
-
-        /// FAZER O OBJETO SER DESTRUIDO DEPOIS DE ACABAR A ANIMAÇÃO!. ANIMATION TRIGGER?
-        //if(anim.)
     }
 
     public void SetDamageText(float _damage)

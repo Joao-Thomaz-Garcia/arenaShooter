@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageTaker : MonoBehaviour
 {
-    [SerializeField] bool b_canBeChasedByJumperProjec;
+    [SerializeField] bool b_canNotBeChasedByJumperProjec = false;
     [SerializeField] bool b_isWeakPoint;
     [SerializeField] GameObject hitDamagePopUp;
 
@@ -29,7 +29,7 @@ public class DamageTaker : MonoBehaviour
             }
         }
 
-
+        _hitPopUpPos.y += 1;
         HitPopUpScript _hitDamageGO = Instantiate(hitDamagePopUp, _hitPopUpPos, Quaternion.identity).GetComponent<HitPopUpScript>();
         _hitDamageGO.SetDamageText(_damage);
 
@@ -59,6 +59,6 @@ public class DamageTaker : MonoBehaviour
     }
     public bool GetCanNotBeChasedByJumperProjec()
     {
-        return b_canBeChasedByJumperProjec;
+        return b_canNotBeChasedByJumperProjec;
     }
 }

@@ -38,7 +38,6 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
         var hitPsParts = _hitVFXGO.transform.GetChild(0).GetComponent<ParticleSystem>();
         Destroy(_hitVFXGO, hitPsParts.main.duration);
 
-
         if (collision.transform.GetComponent<DamageTaker>())
         {
             DamageTaker damageTaker = collision.transform.GetComponent<DamageTaker>();
@@ -58,7 +57,11 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
             #region Se for o Galaxy Arrow
             if (GetComponent<Mover_Jumper_Projec>())
             {
-                StartCoroutine(GetComponent<Mover_Jumper_Projec>().FindNewTarget());
+                Mover_Jumper_Projec _moverJumper = GetComponent<Mover_Jumper_Projec>();
+                _moverJumper.AddProjecJump();
+
+                if(_moverJumper.gameObject.activeSelf)
+                    StartCoroutine(_moverJumper.FindNewTarget());
             }
             else
             {
@@ -67,7 +70,7 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
             #endregion
         }
         else
-        { 
+        {
             projectileController.DeactivateProjectile(); 
         }
     }
