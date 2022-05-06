@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 4252415857595551137}
   - component: {fileID: 4252415857595551149}
   - component: {fileID: 4252415857595551148}
+  - component: {fileID: 1966825328}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -458,12 +459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253a0bf26177b124dacc1ae1c7176404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireStandardFireRate: 2
-  fireExplosionFireRate: 2
-  fireRockFireRate: 2
-  corruptionFireRate: 2
-  galaxyFireRate: 2
-  carmesimFireRate: 2
+  fireStandardFireRate: 1
+  fireExplosionFireRate: 1
+  fireRockFireRate: 1
+  corruptionFireRate: 1
+  galaxyFireRate: 1
+  carmesimFireRate: 1
 --- !u!114 &4252415857595551148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +485,18 @@ MonoBehaviour:
   corruptionRecipe: {x: 2, y: 2, z: 2}
   galaxyRecipe: {x: 1, y: 1, z: 2}
   carmesimRecipe: {x: 2, y: 2, z: 1}
+--- !u!114 &1966825328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252415857595551139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b454e994399c84c4e9d4294d6fd42e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7322431084458467735
 GameObject:
   m_ObjectHideFlags: 0

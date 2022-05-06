@@ -26,6 +26,63 @@ public class G_ProjectileModifiers : MonoBehaviour
         return valueToReturn;
     }
 
+    public void AddDamageUpgrades(ProjectileType _projecType, float _damage)
+    {
+        if (_projecType == ProjectileType.FireStandard || _projecType == ProjectileType.FireExplosion || _projecType == ProjectileType.FireRock)
+        {
+            GetFireModifiers().AddDamage(_damage);
+        }
+        else if (_projecType == ProjectileType.CorruptionStandard || _projecType == ProjectileType.CorruptionSphere || _projecType == ProjectileType.CorruptionArrow)
+        {
+            GetCorruptionModifiers().AddDamage(_damage);
+        }
+        else if (_projecType == ProjectileType.GalaxyStandard || _projecType == ProjectileType.GalaxyArrow || _projecType == ProjectileType.GalaxyGuiada)
+        {
+            GetGalaxyModifiers().AddDamage(_damage);
+        }
+        else if (_projecType == ProjectileType.CarmesimStandard || _projecType == ProjectileType.CarmesimArrow || _projecType == ProjectileType.CarmesimExplosion)
+        {
+            GetCarmesimModifiers().AddDamage(_damage);
+        }
+    }
+    public void AddMoveSpeedUpgrades(ProjectileType _projecType, float _moveSpeed)
+    {
+        if (_projecType == ProjectileType.FireStandard || _projecType == ProjectileType.FireExplosion || _projecType == ProjectileType.FireRock)
+        {
+            GetFireModifiers().AddMoveSpeed(_moveSpeed);
+        }
+        else if (_projecType == ProjectileType.CorruptionStandard || _projecType == ProjectileType.CorruptionSphere || _projecType == ProjectileType.CorruptionArrow)
+        {
+            GetCorruptionModifiers().AddMoveSpeed(_moveSpeed);
+        }
+        else if (_projecType == ProjectileType.GalaxyStandard || _projecType == ProjectileType.GalaxyArrow || _projecType == ProjectileType.GalaxyGuiada)
+        {
+            GetGalaxyModifiers().AddMoveSpeed(_moveSpeed);
+        }
+        else if (_projecType == ProjectileType.CarmesimStandard || _projecType == ProjectileType.CarmesimArrow || _projecType == ProjectileType.CarmesimExplosion)
+        {
+            GetCarmesimModifiers().AddMoveSpeed(_moveSpeed);
+        }
+    }
+    public void AddFireRateUpgrades(ProjectileType _projecType, float _fireRate)
+    {
+        if (_projecType == ProjectileType.FireStandard || _projecType == ProjectileType.FireExplosion || _projecType == ProjectileType.FireRock)
+        {
+            GetFireModifiers().AddFireRate(_fireRate);
+        }
+        else if (_projecType == ProjectileType.CorruptionStandard || _projecType == ProjectileType.CorruptionSphere || _projecType == ProjectileType.CorruptionArrow)
+        {
+            GetCorruptionModifiers().AddFireRate(_fireRate);
+        }
+        else if (_projecType == ProjectileType.GalaxyStandard || _projecType == ProjectileType.GalaxyArrow || _projecType == ProjectileType.GalaxyGuiada)
+        {
+            GetGalaxyModifiers().AddFireRate(_fireRate);
+        }
+        else if (_projecType == ProjectileType.CarmesimStandard || _projecType == ProjectileType.CarmesimArrow || _projecType == ProjectileType.CarmesimExplosion)
+        {
+            GetCarmesimModifiers().AddFireRate(_fireRate);
+        }
+    }
 
     public FireProjectilesModifiers GetFireModifiers()
     {

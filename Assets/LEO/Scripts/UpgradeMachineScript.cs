@@ -5,16 +5,4 @@ using UnityEngine;
 public class UpgradeMachineScript : MonoBehaviour
 {
 
-
-
-
-
-
-
-    public void DoUpgrade()
-    {
-
-    }
-
-
 }

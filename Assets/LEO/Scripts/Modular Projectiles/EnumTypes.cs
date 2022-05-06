@@ -21,3 +21,10 @@ public enum ProjectileType
 public enum InteractableObjectsType { Nulo, UpgradeMachine }
 
 public enum EnemyStatesType { Innactive, Chase, Dashing, Attack }
+
+public enum UpgradeTyoe 
+{ 
+    Nulo, Damage, MoveSpeed, FireRate,
+    FireExplosion, CorruptionSphereRadious, GalaxyJumps, CarmesimWeakness
+}
+

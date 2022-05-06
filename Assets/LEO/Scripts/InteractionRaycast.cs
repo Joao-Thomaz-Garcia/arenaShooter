@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class InteractionRaycast : MonoBehaviour
 {
-
-
-    private void Awake()
-    {
-
-    }
+    InteractableObject atualHitedObject = null;
 
     private void Update()
     {
@@ -21,13 +16,29 @@ public class InteractionRaycast : MonoBehaviour
             if (hit.transform.GetComponent<InteractableObject>())
             {
                 InteractableObject _interactableObject = hit.transform.GetComponent<InteractableObject>();
-                _interactableObject.DoInteraction();
+
+                if (atualHitedObject == _interactableObject)
+                {
+                    ProjectileType _projecType = GetComponent<Automatic_Shoot>().GetProjectileSelected();
+                    _interactableObject.StartTweeningInteraction(_projecType);
+                }
+                else
+                {
+                    if(atualHitedObject != null)
+                        atualHitedObject.StopTweeningInteraction();
+                    
+                    atualHitedObject = _interactableObject;
+                }
+            }
+            else
+            {
+                if (atualHitedObject != null)
+                    atualHitedObject.StopTweeningInteraction();
+
+                atualHitedObject = null;
             }
         }
     }
-
-
-
 
 
 }

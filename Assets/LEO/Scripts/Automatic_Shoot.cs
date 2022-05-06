@@ -109,5 +109,9 @@ public class Automatic_Shoot : MonoBehaviour
     }
     #endregion
 
+    public ProjectileType GetProjectileSelected()
+    {
+        return atualProjectile;
+    }
 
 }

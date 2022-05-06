@@ -104,8 +104,8 @@ public class Mover_Jumper_Projec : ProjectileMoverScript
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, jumpRadius);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(transform.position, jumpRadius);
     }
 
 

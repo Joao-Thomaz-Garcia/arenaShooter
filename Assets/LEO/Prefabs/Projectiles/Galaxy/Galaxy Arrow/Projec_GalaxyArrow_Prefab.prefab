@@ -5031,7 +5031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   bulletDropSpeed: 0
-  jumpRadius: 50
+  jumpRadius: 10
   startJumps: 2
 --- !u!114 &7220814392656773620
 MonoBehaviour:
