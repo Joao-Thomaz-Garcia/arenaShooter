@@ -30,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnNewRound(RoundSetup Round)
     {
+        /*
         var enemyManager = GetComponent<EnemyManager>();
         for (int i = 0; i < Round.EnemyType.Count; i++)
         {
@@ -61,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
                 manageEnemyClass.SetPlayerObject(playerObject);
             }
 
-        }
+        }*/
     }
 
     /*

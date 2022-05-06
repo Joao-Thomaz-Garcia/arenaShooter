@@ -5,13 +5,15 @@ using UnityEngine;
 public class InteractionRaycast : MonoBehaviour
 {
     InteractableObject atualHitedObject = null;
+    [SerializeField]
+    LayerMask layerMask;
 
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             if (hit.transform.GetComponent<InteractableObject>())
             {

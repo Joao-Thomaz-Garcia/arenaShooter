@@ -6,8 +6,17 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "Round Setting", menuName = "New RoundSetup", order = 1)]
 public class RoundSetup : ScriptableObject
 {
+    public List<EnemyTypesAndAmounts> enemyTypes = new List<EnemyTypesAndAmounts>();
 
-    public List<EnemyTypes> EnemyType = new List<EnemyTypes>();
-    public List<int> EnemyAmount = new List<int>();
+}
+
+[System.Serializable]
+public class EnemyTypesAndAmounts
+{
+    [SerializeField]
+    EnemyTypes enemyTypeTeste;
+    [SerializeField]
+    int enemyAmount;
+
 
 }
