@@ -29,6 +29,9 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
     #region ON EVENTS
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject == gameObject)
+            return;
+
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point + contact.normal;

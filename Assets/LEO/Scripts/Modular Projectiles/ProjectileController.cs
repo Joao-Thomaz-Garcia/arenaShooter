@@ -93,10 +93,18 @@ public class ProjectileController : MonoBehaviour
     }
 
 
-    public void ActivateProjectile()
+    public void ActivatePlayerProjectile()
     {
         ProjecPopulateConfiguration();
         StartMoveProjectile();
+    }
+    public void ActivateEnemyProjectile(Transform _enemyFireSpot)
+    {
+        transform.position = _enemyFireSpot.position;
+        transform.rotation = _enemyFireSpot.rotation;
+
+        b_canMove = true;
+        GetComponent<ParticleSystem>().Play();
     }
     public void DeactivateProjectile()
     {

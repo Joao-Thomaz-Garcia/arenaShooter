@@ -30,16 +30,12 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnNewRound(RoundSetup Round)
     {
-        /*
         var enemyManager = GetComponent<EnemyManager>();
-        for (int i = 0; i < Round.EnemyType.Count; i++)
+        for (int i = 0; i < Round.roundData.Count; i++)
         {
-            for (int j = 0; j < Round.EnemyAmount[i]; j++)
+            for (int j = 0; j < Round.roundData[i].GetEnemyAmount(); j++)
             {
                 var enemyInList = enemyManager.EnemysList[i];
-
-
-
 
                 Vector3 SpawnPoint = Random.insideUnitSphere * CircleRadius;
                 SpawnPoint += transform.position;
@@ -62,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
                 manageEnemyClass.SetPlayerObject(playerObject);
             }
 
-        }*/
+        }
     }
 
     /*

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0329988b5479d8f40a22dbe79f4df617, type: 3}
   m_Name: Round 3
   m_EditorClassIdentifier: 
-  EnemyType: 000000000100000002000000
-  EnemyAmount: 030000000300000001000000
+  enemyTypes:
+  - enemyTypeTeste: 0
+    enemyAmount: 0

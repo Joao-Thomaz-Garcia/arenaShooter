@@ -15,5 +15,3 @@ MonoBehaviour:
   enemyTypes:
   - enemyTypeTeste: 0
     enemyAmount: 0
-  - enemyTypeTeste: 0
-    enemyAmount: 0

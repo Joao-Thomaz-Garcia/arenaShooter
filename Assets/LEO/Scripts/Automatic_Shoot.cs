@@ -59,7 +59,7 @@ public class Automatic_Shoot : MonoBehaviour
         {
             // Shoot;
             ProjectileController _projectile = ammoController.GetNextProjectileToShoot();
-            _projectile.ActivateProjectile();
+            _projectile.ActivatePlayerProjectile();
 
             timer = 0;
         }
@@ -80,7 +80,7 @@ public class Automatic_Shoot : MonoBehaviour
         {
             // Shoot;
             ProjectileController _projectile = ammoController.GetNextProjectileToShoot();
-            _projectile.ActivateProjectile();
+            _projectile.ActivatePlayerProjectile();
 
             timer = 0;
         }
@@ -91,7 +91,7 @@ public class Automatic_Shoot : MonoBehaviour
         {
             // Shoot;
             ProjectileController _projectile = ammoController.GetNextProjectileToShoot();
-            _projectile.ActivateProjectile();
+            _projectile.ActivatePlayerProjectile();
 
             timer = 0;
         }
@@ -102,7 +102,7 @@ public class Automatic_Shoot : MonoBehaviour
         {
             // Shoot;
             ProjectileController _projectile = ammoController.GetNextProjectileToShoot();
-            _projectile.ActivateProjectile();
+            _projectile.ActivatePlayerProjectile();
 
             timer = 0;
         }

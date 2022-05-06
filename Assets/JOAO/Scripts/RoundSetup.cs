@@ -6,7 +6,7 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "Round Setting", menuName = "New RoundSetup", order = 1)]
 public class RoundSetup : ScriptableObject
 {
-    public List<EnemyTypesAndAmounts> enemyTypes = new List<EnemyTypesAndAmounts>();
+    public List<EnemyTypesAndAmounts> roundData = new List<EnemyTypesAndAmounts>();
 
 }
 
@@ -14,9 +14,16 @@ public class RoundSetup : ScriptableObject
 public class EnemyTypesAndAmounts
 {
     [SerializeField]
-    EnemyTypes enemyTypeTeste;
+    EnemyTypes enemyType;
     [SerializeField]
     int enemyAmount;
 
-
+    public EnemyTypes GetEnemyType()
+    {
+        return enemyType;
+    }
+    public int GetEnemyAmount()
+    {
+        return enemyAmount;
+    }
 }
