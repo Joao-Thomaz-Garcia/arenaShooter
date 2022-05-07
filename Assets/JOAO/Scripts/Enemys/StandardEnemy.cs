@@ -52,7 +52,8 @@ public class StandardEnemy : EnemyClass
         }
         while (state == EnemyStatesType.Attack)
         {
-            //GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+            GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+            state = EnemyStatesType.Chase;
 
             //Do Damage
             break;
@@ -60,7 +61,7 @@ public class StandardEnemy : EnemyClass
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.layer != layerMask)
             state = EnemyStatesType.Attack;

@@ -69,7 +69,9 @@ public class UnstoppableEnemy : EnemyClass
         }
         while (state == EnemyStatesType.Attack)
         {
-            //Do Damage
+            GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+            state = EnemyStatesType.Chase;
+
             break;
         }
 
@@ -77,6 +79,8 @@ public class UnstoppableEnemy : EnemyClass
 
     void PrepareToDash()
     {
+        agent.SetDestination(transform.position);
+
         chargingTimer += Time.fixedDeltaTime;
         if (chargingTimer >= chargingTimerUpdate)
         {
@@ -118,7 +122,7 @@ public class UnstoppableEnemy : EnemyClass
 
     void Dash()
     {
-        if(Vector3.Distance(transform.position, waypoint) <= 0.7f)
+        if(Vector3.Distance(transform.position, waypoint) <= 1f)
             state = EnemyStatesType.Chase;
 
         agent.SetDestination(waypoint);
@@ -130,6 +134,13 @@ public class UnstoppableEnemy : EnemyClass
         //Gizmos da aréa de detecção do player.
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 15f);
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer != layerMask && state == EnemyStatesType.Dashing)
+            state = EnemyStatesType.Attack;
 
     }
 }

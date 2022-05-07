@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Round 1
   m_EditorClassIdentifier: 
   roundData:
-  - enemyType: 2
-    enemyAmount: 5
+  - enemyType: 3
+    enemyAmount: 1
