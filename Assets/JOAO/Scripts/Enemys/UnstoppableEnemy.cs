@@ -69,9 +69,7 @@ public class UnstoppableEnemy : EnemyClass
         }
         while (state == EnemyStatesType.Attack)
         {
-            GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
-            state = EnemyStatesType.Chase;
-
+            Attack();
             break;
         }
 
@@ -142,6 +140,14 @@ public class UnstoppableEnemy : EnemyClass
         if (collision.gameObject.layer != layerMask && state == EnemyStatesType.Dashing)
             state = EnemyStatesType.Attack;
 
+    }
+
+
+
+    protected override void Attack()
+    {
+        GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+        state = EnemyStatesType.Chase;
     }
 }
 

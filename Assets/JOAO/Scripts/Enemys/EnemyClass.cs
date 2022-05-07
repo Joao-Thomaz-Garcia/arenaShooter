@@ -46,22 +46,7 @@ public abstract class EnemyClass : MonoBehaviour
         }
     }
 
-
-
-
     protected abstract void Attack();
-
-
-
-
-
-
-
-
-
-
-
-
 
     //Gets
     public float GetHealth()

@@ -52,10 +52,7 @@ public class StandardEnemy : EnemyClass
         }
         while (state == EnemyStatesType.Attack)
         {
-            GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
-            state = EnemyStatesType.Chase;
-
-            //Do Damage
+            Attack();
             break;
         }
 
@@ -76,6 +73,7 @@ public class StandardEnemy : EnemyClass
 
     protected override void Attack()
     {
-
+        GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+        state = EnemyStatesType.Chase;
     }
 }
