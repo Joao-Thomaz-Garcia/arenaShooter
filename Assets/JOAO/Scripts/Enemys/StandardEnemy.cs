@@ -74,4 +74,8 @@ public class StandardEnemy : EnemyClass
         agent.SetDestination(playerObject.transform.position);
     }
 
+    protected override void Attack()
+    {
+
+    }
 }
