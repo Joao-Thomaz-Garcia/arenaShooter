@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyClass : MonoBehaviour
+public abstract class EnemyClass : MonoBehaviour
 {
     private float health;
     private float speed;
     private float damage;
-
+     
     protected GameObject playerObject;
 
     private void Awake()
@@ -45,6 +45,23 @@ public class EnemyClass : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+
+
+    protected abstract void Attack();
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Gets
     public float GetHealth()

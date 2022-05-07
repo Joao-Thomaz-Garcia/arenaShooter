@@ -98,7 +98,7 @@ public class GroundShooterEnemy : EnemyClass
 
     }
 
-    private void Attack()
+    protected override void Attack()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(GetPlayerObject().transform.position);
@@ -113,7 +113,5 @@ public class GroundShooterEnemy : EnemyClass
 
             shotTimer = 0;
         }
-
-
     }
 }

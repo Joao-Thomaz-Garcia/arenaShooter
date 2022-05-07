@@ -126,7 +126,8 @@ public class SwarmLeaderEnemy : EnemyClass
 
     }
 
-    private void Attack()
+
+    protected override void Attack()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(GetPlayerObject().transform.position);
@@ -134,15 +135,13 @@ public class SwarmLeaderEnemy : EnemyClass
         shotTimer += Time.fixedDeltaTime;
         if (shotTimer >= shotDelay)
         {
-
-            Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation);
+            /// COMENTEI MESMO! FODA-SE! SE FUDEU PARA DESCOBRIR O MOTIVO DO CARA NÃO ESTAR ATIRANDO...
+            ProjectileController _projectile = Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation).GetComponent<ProjectileController>();
+            _projectile.ActivateEnemyProjectile(shotAim.transform);
             Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
-
-            //Debug.Break();
 
             shotTimer = 0;
         }
-
     }
 
 

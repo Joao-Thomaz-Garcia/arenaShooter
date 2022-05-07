@@ -13,6 +13,8 @@ public class SwarmVassalEnemy : EnemyClass
 
     GameObject shotProjectile;
 
+    [SerializeField]
+    GameObject shotAim;
 
     EnemyStatesType state;
 
@@ -118,7 +120,7 @@ public class SwarmVassalEnemy : EnemyClass
 
         }
     }
-    private void Attack()
+    protected override void Attack()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(GetPlayerObject().transform.position);
@@ -126,7 +128,9 @@ public class SwarmVassalEnemy : EnemyClass
         shotTimer += Time.fixedDeltaTime;
         if (shotTimer >= shotDelay)
         {
-            Instantiate(shotProjectile, transform.position, transform.rotation);
+            /// COMENTEI MESMO! FODA-SE! SE FUDEU PARA DESCOBRIR O MOTIVO DO CARA NÃO ESTAR ATIRANDO...
+            ProjectileController _projectile = Instantiate(shotProjectile, shotAim.transform.position, shotAim.transform.rotation).GetComponent<ProjectileController>();
+            _projectile.ActivateEnemyProjectile(shotAim.transform);
             Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
 
             shotTimer = 0;

@@ -15,12 +15,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void SetHealth(float health)
     {
-        print("ENTROU NO SET HEALTH!");
         atualHealth -= health;
 
         if (atualHealth <= 0)
         {
-            print("ENTROU NO IF!");
             Destroy(gameObject);
         }
     }

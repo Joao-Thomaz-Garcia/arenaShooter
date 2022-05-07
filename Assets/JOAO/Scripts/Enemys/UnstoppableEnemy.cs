@@ -132,5 +132,10 @@ public class UnstoppableEnemy : EnemyClass
         Gizmos.DrawWireSphere(transform.position, 15f);
 
     }
+
+    protected override void Attack()
+    {
+
+    }
 }
 
