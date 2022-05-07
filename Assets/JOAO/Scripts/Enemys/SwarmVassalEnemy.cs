@@ -6,6 +6,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class SwarmVassalEnemy : EnemyClass
 {
+    [SerializeField]
+    GameObject fireSpot;
+
     //Shoot Properties
     float shotTimer;
     float shotDelay = 2f;
@@ -126,7 +129,7 @@ public class SwarmVassalEnemy : EnemyClass
         shotTimer += Time.fixedDeltaTime;
         if (shotTimer >= shotDelay)
         {
-            Instantiate(shotProjectile, transform.position, transform.rotation);
+            Instantiate(shotProjectile, fireSpot.transform.position, transform.rotation);
             Debug.DrawLine(transform.position, GetPlayerObject().transform.position, Color.red, 1f);
 
             shotTimer = 0;
