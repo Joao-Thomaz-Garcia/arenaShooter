@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
 
     List<GameObject> spawnedEnemys = new List<GameObject>();
-    List<float> spawnedEnemysHealth = new List<float>();
+    //List<float> spawnedEnemysHealth = new List<float>();
 
 
     private void Start()
@@ -23,19 +23,29 @@ public class EnemySpawner : MonoBehaviour
 
 
     }
+
+    private void Update()
+    {
+        CheckAndClear();
+    }
+
     private void FixedUpdate()
     {
+        if (spawnedEnemys.Count == 0)
+            SpawnNewRound(Rounds[RoundCounter]);
 
     }
 
     void SpawnNewRound(RoundSetup Round)
     {
         var enemyManager = GetComponent<EnemyManager>();
+        var roundData = Round.roundData;
         for (int i = 0; i < Round.roundData.Count; i++)
         {
-            for (int j = 0; j < Round.roundData[i].GetEnemyAmount(); j++)
+            for (int j = 0; j < roundData[i].GetEnemyAmount(); j++)
             {
-                var enemyInList = enemyManager.EnemysList[i];
+                int enemyKind = (int)roundData[i].GetEnemyType();
+                var enemyInList = enemyManager.EnemysList[enemyKind];
 
                 Vector3 SpawnPoint = Random.insideUnitSphere * CircleRadius;
                 SpawnPoint += transform.position;
@@ -53,11 +63,25 @@ public class EnemySpawner : MonoBehaviour
                 var manageEnemyClass = go.GetComponent<EnemyClass>();
                 var enemyHealth = manageEnemyClass.GetHealth();
 
-                spawnedEnemysHealth.Add(enemyHealth);
+                //spawnedEnemysHealth.Add(enemyHealth);
 
                 manageEnemyClass.SetPlayerObject(playerObject);
+
+
             }
 
+        }
+
+        RoundCounter++;
+    }
+
+    void CheckAndClear()
+    {
+        foreach(GameObject go in spawnedEnemys)
+        {
+            if (go == null)
+                spawnedEnemys.Remove(go);
+            
         }
     }
 
