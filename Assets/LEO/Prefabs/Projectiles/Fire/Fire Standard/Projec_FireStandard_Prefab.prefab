@@ -5042,8 +5042,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35ad13b91040b541944e15a5523362a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit_prefab: {fileID: 1096352044232144, guid: 87542d8f24d11034db03c4fa9865fcd0, type: 3}
   b_canHitWeakPoint: 0
+  hitVFX_prefab: {fileID: 1096352044232144, guid: 87542d8f24d11034db03c4fa9865fcd0,
+    type: 3}
 --- !u!114 &4703288093950723811
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class Collision_Continuous_Projec : ProjectileCollisionScript
             DamageTaker damageTaker = other.transform.GetComponent<DamageTaker>();
 
             float _damage = projectileController.GetProjecDamager().GetFinalDamage();
-            damageTaker.TakeDamage(_damage, other.transform.position, projectileController);
+            damageTaker.TakeDamage(_damage, other.transform.position, projectileController, this.gameObject);
         }
 
         // OS PROJETEIS COMO ESTE SÓ PODEM SER DESTRUIDOS PELO TEMPO DE VIDA.

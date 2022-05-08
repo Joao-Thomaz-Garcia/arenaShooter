@@ -32,7 +32,7 @@ public class Explosion_Standard : ExplosionScript
                 DamageTaker _damageTaker = explosionColls[i].GetComponent<DamageTaker>();
 
                 float _finalDamage = explosionDamage + Globals.Instance.projectileModifiers.GetFireModifiers().GetExplosionDamage();
-                _damageTaker.TakeDamage(_finalDamage, explosionColls[i].transform.position, null);
+                _damageTaker.TakeDamage(_finalDamage, explosionColls[i].transform.position, null, this.gameObject);
             }
         }
 

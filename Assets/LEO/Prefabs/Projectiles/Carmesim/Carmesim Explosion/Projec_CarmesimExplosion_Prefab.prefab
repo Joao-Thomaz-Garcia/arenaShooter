@@ -5028,7 +5028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00156d2fa9e52f147baf88cd121d7d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   bulletDropSpeed: 0
 --- !u!114 &973100827136014793
 MonoBehaviour:
@@ -5042,8 +5042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35ad13b91040b541944e15a5523362a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit_prefab: {fileID: 1397205833975230, guid: 5dcfdb8dcabb29242a1ba4ce2ac31b63, type: 3}
   b_canHitWeakPoint: 0
+  hitVFX_prefab: {fileID: 0}
 --- !u!1 &1636178935717250
 GameObject:
   m_ObjectHideFlags: 0

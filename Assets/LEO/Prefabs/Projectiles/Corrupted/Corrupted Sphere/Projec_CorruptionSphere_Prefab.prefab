@@ -14736,7 +14736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00156d2fa9e52f147baf88cd121d7d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   bulletDropSpeed: 0
 --- !u!114 &8110017006585341620
 MonoBehaviour:
@@ -14750,7 +14750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f5c57379297b143a7e913f103706b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
+  baseDamage: 10
 --- !u!114 &7136757859247791480
 MonoBehaviour:
   m_ObjectHideFlags: 0

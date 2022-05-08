@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Collision_Standard_Projec : ProjectileCollisionScript
 {
+    GameObject player;
 
     #region AWAKE, START, UPDATES
     protected override void Awake()
     {
         base.Awake();
+        player = GameObject.Find("Player");
     }
     protected override void Start()
     {
@@ -54,7 +56,7 @@ public class Collision_Standard_Projec : ProjectileCollisionScript
 
 
             float _damage = projectileController.GetProjecDamager().GetFinalDamage();
-            damageTaker.TakeDamage(_damage, pos, projectileController);
+            damageTaker.TakeDamage(_damage, pos, projectileController, this.gameObject);
 
 
             #region Se for o Galaxy Arrow

@@ -73,7 +73,7 @@ public class StandardEnemy : EnemyClass
 
     protected override void Attack()
     {
-        GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null);
+        GetPlayerObject().GetComponent<DamageTaker>().TakeDamage(GetDamage(), Vector3.zero, null, this.gameObject);
         state = EnemyStatesType.Chase;
     }
 }

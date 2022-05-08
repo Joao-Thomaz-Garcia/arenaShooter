@@ -11,11 +11,49 @@ public class DamageTaker : MonoBehaviour
     [SerializeField] float maxStackableWeaknessHits;
     int atualWeaknessHits = 0;
 
-    public void TakeDamage(float _damage, Vector3 _hitPopUpPos, ProjectileController _projecController)
+    public void TakeDamage(float _damage, Vector3 _hitPopUpPos, ProjectileController _projecController, GameObject _caster)
     {
-        if (GetComponent<PlayerHealth>())
+        if (GetComponent<EnemyClass>())
+        {
+            if (_projecController)
+            {
+                if (b_isWeakPoint && _projecController.GetComponent<ProjectileCollisionScript>().GetCanHitWeakPoint())
+                {
+                    _damage += atualWeaknessHits * Globals.Instance.projectileModifiers.GetWeakPointDamageByProjecType(_projecController.GetProjectileType()); // PARA CADA PONTO STACKADO DE FRAQUEZA, MULTIPLICA O DANO RECEBIDO DO INIMIGO POR QUANTO DE FRAQUEZA ADICIONAL.
+                }
+            }
+
+            _hitPopUpPos.y += 1;
+            HitPopUpScript _hitDamageGO = Instantiate(hitDamagePopUp, _hitPopUpPos, Quaternion.identity).GetComponent<HitPopUpScript>();
+            _hitDamageGO.SetDamageText(_damage);
+
+            GetComponent<EnemyClass>().TakeDamage(_damage);
+        }
+        else if (GetComponent<PlayerHealth>())
+        {
+            if (_caster.GetComponent<ProjectileController>())
+            {
+                if (_caster.GetComponent<ProjectileController>().GetProjectileType() == ProjectileType.CarmesimArrow)
+                {
+                    PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+                    playerHealth.SetHealth(_damage);
+                }
+            }
+        }
+
+
+
+
+        /*if (GetComponent<PlayerHealth>())
         {
             PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+
+            if (_projecController)
+            {
+                if (_projecController.GetProjectileType() == ProjectileType.GalaxyArrow)
+                    return;
+            }
+
             playerHealth.SetHealth(_damage);
             return;
         }
@@ -33,7 +71,7 @@ public class DamageTaker : MonoBehaviour
         HitPopUpScript _hitDamageGO = Instantiate(hitDamagePopUp, _hitPopUpPos, Quaternion.identity).GetComponent<HitPopUpScript>();
         _hitDamageGO.SetDamageText(_damage);
 
-        GetComponent<EnemyClass>().TakeDamage(_damage);
+        GetComponent<EnemyClass>().TakeDamage(_damage);*/
 
     }
 
