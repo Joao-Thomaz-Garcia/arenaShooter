@@ -31,9 +31,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (spawnedEnemys.Count == 0)
+        if (spawnedEnemys.Count == 0 && RoundCounter != Rounds.Count)
+        {
             SpawnNewRound(Rounds[RoundCounter]);
-
+            //Spawnar upgrade
+        }
+        else if (spawnedEnemys.Count == 0 && RoundCounter >= Rounds.Count)
+            Destroy(GetComponent<EnemyManager>().GetPlayerObject());
     }
 
     void SpawnNewRound(RoundSetup Round)

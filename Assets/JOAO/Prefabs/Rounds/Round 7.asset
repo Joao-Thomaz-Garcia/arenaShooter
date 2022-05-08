@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0329988b5479d8f40a22dbe79f4df617, type: 3}
-  m_Name: Round 3
+  m_Name: Round 7
   m_EditorClassIdentifier: 
   roundData:
   - enemyType: 0
-    enemyAmount: 3
+    enemyAmount: 0
   - enemyType: 1
     enemyAmount: 2
+  - enemyType: 2
+    enemyAmount: 2
+  - enemyType: 3
+    enemyAmount: 1

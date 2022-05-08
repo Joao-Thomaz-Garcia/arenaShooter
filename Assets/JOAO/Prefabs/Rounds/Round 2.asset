@@ -15,3 +15,5 @@ MonoBehaviour:
   roundData:
   - enemyType: 0
     enemyAmount: 2
+  - enemyType: 1
+    enemyAmount: 1
