@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0329988b5479d8f40a22dbe79f4df617, type: 3}
+  m_Name: Round 19
+  m_EditorClassIdentifier: 
+  roundData:
+  - enemyType: 0
+    enemyAmount: 10
+  - enemyType: 1
+    enemyAmount: 10
+  - enemyType: 2
+    enemyAmount: 10
+  - enemyType: 3
+    enemyAmount: 10

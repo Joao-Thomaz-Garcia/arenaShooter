@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
-  enemySpeed: 2
+  enemySpeed: 4
   enemyDamage: 2
   layerMask:
     serializedVersion: 2
