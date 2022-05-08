@@ -132,7 +132,7 @@ public class InteractableObject : MonoBehaviour
                 break;
         }
 
-        text.text += ": " + "<color=green>" + _adicionalString + "</color>";
+        text.text += ": " + "<color=red>" + _adicionalString + "</color>";
     }
 
     public bool GetIsTweening()

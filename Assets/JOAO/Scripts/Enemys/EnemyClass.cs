@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyClass : MonoBehaviour
 {
+
     private float health;
     private float speed;
     private float damage;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 327033821018824437}
   - component: {fileID: 327033821018824443}
   - component: {fileID: 327033821018824442}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 327033822354582061}
   - component: {fileID: 327033822354582032}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: FireExplosionUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327033822354582060}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.0499477, y: 0.5, z: -19.345924}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 327033822732620077}
   - component: {fileID: 327033822732620051}
   - component: {fileID: 327033822732620050}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
